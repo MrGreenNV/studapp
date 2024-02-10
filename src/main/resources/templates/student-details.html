@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <main class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Student Details</h1>
+                </div>
+                <div class="row bg-light rounded">
+                    <div class="col-md-6">
+                        <h2>Student</h2>
+                        <h4 th:text="'Name: ' + ${studentDetails.studentName}"></h4>
+                        <h4 th:text="'Group: ' + ${studentDetails.groupName}"></h4>
+                        <div class="align-bottom">
+                            <a class="btn btn-danger align-bottom"
+                               th:href="@{/students/student-delete/{student-name}(student-name=${studentDetails.studentName})}">Delete
+                                student</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6"><img src="/pic/student_1.png" height="350px"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

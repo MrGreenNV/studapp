@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<div class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="jumbotron text-center rounded col-md-12 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Add Student</h1>
+                </div>
+                <form th:action="@{/students/add}"
+                      th:method="post"
+                      th:object="${studentModel}"
+                      class="m-md-auto w-50 pb-3">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="studentName">Name</label>
+                        <input th:field="*{studentName}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center"
+                               id="studentName" aria-describedby="studentName" name="studentName"/>
+                        <small th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="group"><h5>All available group</h5></label>
+                        <select multiple="false" class="form-control text-center"
+                                id="group" name="name" th:field="*{groupName}">
+                            <option th:each="c : ${availableGroup}"
+                                    th:value="${c.getGroupName()}"
+                                    th:text="${c.getGroupName()}">Group name
+                            </option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}"
+                               class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Add Student</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<footer th:replace="fragments/footer"></footer>
+</html>

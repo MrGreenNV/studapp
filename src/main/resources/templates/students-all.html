@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head"></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+                <h2 class="text-center text-dark mt-5">All students</h2>
+                <div class='row mb-4 d-flex justify-content-around'>
+                    <div th:each="e : ${allStudents}" class="col-md-4 d-flex flex-column bg-text mb-3 rounded">
+                        <h2 th:text="'Name: ' + *{e.studentName}"></h2>
+                        <h4><a class="btn-block"
+                               th:href="@{/students/student-details/{student-name}(student-name=*{e.studentName})}">Detail
+                            info</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>

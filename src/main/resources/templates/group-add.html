@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"></head>
+<body class="d-flex flex-column h-100">
+<div th:replace="fragments/navbar">Navbar</div>
+<main class="flex-shrink-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="jumbotron text-center rounded col-md-8 align-self-center pt-5">
+                <div class="justify-content-center">
+                    <h1>Add Group</h1>
+                </div>
+                <form th:action="@{/groups/add}"
+                      th:method="post"
+                      th:object="${groupModel}"
+                      class="m-md-auto w-50 pb-3">
+                    <div class="mb-3">
+                        <label class="form-label" for="groupName">Name</label>
+                        <input th:field="*{groupName}"
+                               th:errorclass="is-invalid"
+                               type="text" class="form-control text-center" id="groupName" aria-describedby="nameHelp"
+                               name="groupName"/>
+                        <small th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}" class="text-danger">Error
+                            message</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-secondary">Add Group</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>
