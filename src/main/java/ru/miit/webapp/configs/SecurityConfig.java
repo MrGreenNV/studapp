@@ -14,7 +14,6 @@ import org.springframework.security.web.context.DelegatingSecurityContextReposit
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
 import org.springframework.security.web.context.SecurityContextRepository;
-import ru.miit.webapp.models.UserRoles;
 import ru.miit.webapp.repositories.GroupRepository;
 import ru.miit.webapp.repositories.StudentRepository;
 import ru.miit.webapp.services.StudentService;
@@ -56,7 +55,7 @@ public class SecurityConfig {
                                         .permitAll()
                                         .requestMatchers("/pic/**")
                                         .permitAll()
-                                        .requestMatchers("/", "/users/register", "/users/login", "/users/login-error")
+                                        .requestMatchers("/", "/users/register", "/users/login", "/users/login-error", "/test")
                                         .permitAll()
                                         .requestMatchers("/groups/add", "groups/group-details/", "groups/all", "/users/user-delete/", "/groups/group-delete/", "users/profile")
                                         .authenticated()
