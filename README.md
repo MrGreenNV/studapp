@@ -58,7 +58,7 @@ sudo docker-compose up --build -d
 ```
 #### 6. Скопируйте jar файл для релиза:
 ```
-sudo cp home/superuser/app/studapp/target/studapp-1.0.jar /var/www/app/studapp
+sudo cp /home/superuser/app/studapp/target/webapp-1.0.jar /var/www/app/studapp
 ```
 #### 7. Создайте демона, запускающего приложение:
 ```
@@ -72,7 +72,7 @@ User=superuser
 Type=simple
 
 [Service]
-ExecStart=/usr/bin/java -jar /var/www/app/studapp/studapp-1.0.jar
+ExecStart=/usr/bin/java -jar /var/www/app/studapp/webapp-1.0.jar
 Restart=always
 StandardOutput=syslog
 StandardError=syslog
@@ -84,6 +84,7 @@ WantedBy=multi-user.target
 #### 8. Проверьте статус демона:
 ```
 sudo systemctl daemon-reload
+sudo systemctl restart studapp.service
 sudo systemctl status studapp.service
 ```
 #### 9. Измените настройки по умолчанию Nginx для настройки revers proxy:
@@ -116,6 +117,12 @@ ip a
 ```
 После запуска приложение будет доступно по адресу: http://<ip адрес сервера>:80/.
 ### Внимание!!! http без s!!!
+
+#### 11. История команд и тестовый запрос.
+```
+history | less
+```
+Запрос теста по адресу: http://<ip адрес сервера>:80/test.
 
 ----
 
